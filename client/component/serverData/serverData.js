@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData } from "../../action/data";
-import serverData from './rootReduser'
-import Pagination from 'react-js-pagination'
+import serverData from './rootReduser';
+import Pagination from 'react-js-pagination';
 
 class ServerData extends Component {
     constructor(props) {
