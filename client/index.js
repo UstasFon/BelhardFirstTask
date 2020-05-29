@@ -8,7 +8,6 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReduser from './reducers/rootReduser';
 
-
 const store = createStore(
     rootReduser,
     composeWithDevTools(applyMiddleware(thunk)),

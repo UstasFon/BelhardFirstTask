@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData } from "../../action/data";
-import serverData from './rootReduser';
+import serverData from '../../reducers/rootReduser.js';
 import Pagination from 'react-js-pagination';
 
 class ServerData extends Component {
@@ -19,53 +19,36 @@ componentDidMount() {
 
     render() {
         return (
-          <div>
-              <Pagination
-                activePage={this.state.activePage}
-                itemsCountPerPage={this.state.activePage}
-                totalItemsCount={this.props.data.length}
-                pageRangeDisplayed={50}
-                onChange={this.componentDidMount()}
-              >
-                  <ul>
-                      {this.props.data.map((data, index)=>{
-                          return <li key={data.id}>
-                              <div>title: {data.title}</div>
-                              <div>description: {data.description}</div>
-                              <div>image: {data.image}</div>
-                              <div>price: {data.price}</div>
-                              <div>cost: {data.cost}</div>
-                              <div>state: {data.state}</div>
-                              <div>incubator: {data.incubator}</div>
-                              <div>investor: {data.investor}</div>
-                              <div>n_shots: {data.n_shots}</div>
-                              <div>n_investor: {data.n_investor}</div>
-                              <div>n_markets: {data.n_markets}</div>
-                              <div>url_news: {data.url_news}</div>
-                              <div>url: {data.url}</div>
-                              <div>registration_time: {data.registration_time}</div>
-                              <div>creation_time: {data.creation_time}</div>
-                              <div>type: {data.type}</div>
-                              <div>phone: {data.phone}</div>
-                              <div>author: {data.author}</div>
-                          </li>
-                      })}
-                  </ul>
-              </Pagination>
-          </div>
+            <div>
+                <ul>
+                    {this.bla()}
+                    {/*{this.props.serverArr.result.map((data, i)=>{*/}
+                    {/*    return <li key={i}>*/}
+                    {/*        <div>id: {data.id}</div>*/}
+                    {/*        <div>title: {data.title}</div>*/}
+                    {/*        <div>description: {data.description}</div>*/}
+                    {/*        <div>image: {data.image}</div>*/}
+                    {/*        <div>price: {data.price}</div>*/}
+                    {/*    </li>*/}
+                    {/*})}*/}
+                </ul>
+
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        data: state.data
+        serverArr: state.serverArr
     }
 };
 
+
 const mapDispatchToProps = dispatch => {
+    const serverUrl = 'http://itstrana.vh118.hosterby.com/start_up/api/startap/startap/?format=json';
     return {
-        fetchServerData: url => dispatch(fetchData(url))
+        fetchServerData: serverUrl => dispatch(fetchData(serverUrl))
     }
 };
 

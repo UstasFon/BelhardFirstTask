@@ -1,7 +1,7 @@
-export function serverData(state = [], action) {
+export function serverArr(state = [], action) {
     switch (action.type) {
         case "SERVER_FETCH_DATA_SUCCESS":
-            return action.data;
+            return action.serverArr;
         default:
             return state
     }

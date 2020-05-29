@@ -1,10 +1,9 @@
 import serverData from "../component/serverData/serverData";
-import serverUrl from '../comon/comon.js'
 
-export function fetchDataSuccsess(serverUrl) {
+export function fetchDataSuccsess(serverArr) {
     return {
         type: "SERVER_FETCH_DATA_SUCCESS",
-        data
+        serverArr
     }
 }
 
@@ -18,7 +17,7 @@ export function fetchData(serverUrl) {
                 return responce;
             })
             .then(response=> response.json())
-            .then(serverData => dispath(fetchDataSuccsess(data)))
+            .then(serverArr => dispath(fetchDataSuccsess(serverArr)))
     }
 
 }

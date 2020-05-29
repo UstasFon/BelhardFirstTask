@@ -1,0 +1,1 @@
+export const serverUrl = 'http://itstrana.vh118.hosterby.com/start_up/api/startap/startap/?format=json';
