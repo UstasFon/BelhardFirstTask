@@ -1,13 +1,15 @@
 import serverData from "../component/serverData/serverData";
 
-export function fetchDataSuccsess(serverArr) {
+export function fetchDataSuccsess(serverObj) {
     return {
         type: "SERVER_FETCH_DATA_SUCCESS",
-        serverArr
+        serverObj
+
     }
 }
 
 export function fetchData(serverUrl) {
+    console.log(serverUrl);
     return(dispath)=>{
         fetch(url)
             .then(responce => {
@@ -17,7 +19,6 @@ export function fetchData(serverUrl) {
                 return responce;
             })
             .then(response=> response.json())
-            .then(serverArr => dispath(fetchDataSuccsess(serverArr)))
+            .then(serverObj => dispath(fetchDataSuccsess(serverObj)))
     }
-
 }

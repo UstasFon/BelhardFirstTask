@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import MainePage from './component/mainePage/mainePage.js'
 
@@ -7,6 +7,8 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReduser from './reducers/rootReduser';
+import ServerData from './component/serverData/serverData';
+import 'antd/dist/antd.css';
 
 const store = createStore(
     rootReduser,
