@@ -23,26 +23,26 @@ class ServerData extends Component {
         });
     };
 
-    getItems() {
-        let indexFrom = (this.state.current - 1)*this.state.pageSize;
-        let indexTo = this.state.pageSize*this.state.current-1;
-        let currentPage = this.props.serverObj.results.slice(indexFrom, indexTo);
-        return currentPage.map((data, i)=> {
-            return <div key={i}>
-                <p>id: {data.id}</p>
-                <p>title: {data.title}</p>
-                <p>description: {data.description}</p>
-                <p>image: {data.image}</p>
-                <p>price: {data.price}</p>
-                <p>state: {data.state}</p>
-                <p>url: {data.url}</p>
-                <p>registration_time: {data.registration_time}</p>
-                <p>creation_time: {data.creation_time}</p>
-                <p>phone: {data.phone}</p>
-                <p>author: {data.author}</p>
-            </div>
-        });
-    }
+    // getItems() {
+    //     let indexFrom = (this.state.current - 1)*this.state.pageSize;
+    //     let indexTo = this.state.pageSize*this.state.current-1;
+    //     let currentPage = this.props.serverObj.results.slice(indexFrom, indexTo);
+    //     return currentPage.map((data, i)=> {
+    //         return <div key={i}>
+    //             <p>id: {data.id}</p>
+    //             <p>title: {data.title}</p>
+    //             <p>description: {data.description}</p>
+    //             <p>image: {data.image}</p>
+    //             <p>price: {data.price}</p>
+    //             <p>state: {data.state}</p>
+    //             <p>url: {data.url}</p>
+    //             <p>registration_time: {data.registration_time}</p>
+    //             <p>creation_time: {data.creation_time}</p>
+    //             <p>phone: {data.phone}</p>
+    //             <p>author: {data.author}</p>
+    //         </div>
+    //     });
+    // }
 
     render() {
         return (
@@ -56,7 +56,21 @@ class ServerData extends Component {
                             defaultCurrent={1}
                             defaultPageSize = {this.state.pageSize}
                         />
-                        {this.getItems()}
+                        {this.props.serverObj.results.map((data, i)=> {
+                                return <div key={data.id}>
+                                    <p>id: {data.id}</p>
+                                    <p>title: {data.title}</p>
+                                    <p>description: {data.description}</p>
+                                    <p>image: {data.image}</p>
+                                    <p>price: {data.price}</p>
+                                    <p>state: {data.state}</p>
+                                    <p>url: {data.url}</p>
+                                    <p>registration_time: {data.registration_time}</p>
+                                    <p>creation_time: {data.creation_time}</p>
+                                    <p>phone: {data.phone}</p>
+                                    <p>author: {data.author}</p>
+                                </div>
+                            })};
                     </Fragment>
                 )}
             </Fragment>
@@ -67,15 +81,16 @@ class ServerData extends Component {
 const mapStateToProps = state => {
     return {
         serverObj: state.serverObj,
+        pagesize: state.pagesize
     }
 };
 
 
 const mapDispatchToProps = dispatch => {
-    let serverUrl = 'http://itstrana.vh118.hosterby.com/start_up/api/startap/startap/?format=json&pagesize=50';
+    let serverUrl = 'http://itstrana.vh118.hosterby.com/start_up/api/startap/startap/';
     return {
-        fetchServerData: serverUrl => dispatch(fetchData(serverUrl))
+        fetchServerData: (serverUrl, pagesize, page) => dispatch(fetchData(serverUrl, pageSize, page))
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ServerData);
+export default connect(mapStateToProps, mapDispatchToProps)(ServerData, pagesize);

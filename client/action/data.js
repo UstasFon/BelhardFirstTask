@@ -3,13 +3,12 @@ import serverData from "../component/serverData/serverData";
 export function fetchDataSuccsess(serverObj) {
     return {
         type: "SERVER_FETCH_DATA_SUCCESS",
-        serverObj
-
+        serverObj,
     }
 }
 
-export function fetchData(serverUrl) {
-    console.log(serverUrl);
+export function fetchData(serverUrl, pageSize, page) {
+    serverUrl +=  `?type=json&pagesize=${pageSize}&page=${page}`;
     return(dispath)=>{
         fetch(url)
             .then(responce => {
