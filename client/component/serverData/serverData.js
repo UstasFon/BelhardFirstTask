@@ -8,24 +8,31 @@ class ServerData extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            current: 1,
+            page: 1,
             pageSize: 50
         };
     }
 
+    serverReq() {
+        this.props.fetchServerData('http://itstrana.vh118.hosterby.com/start_up/api/startap/startap/',
+            this.state.pageSize,
+            this.state.page);
+    }
+
     componentDidMount() {
-        this.props.fetchServerData('http://itstrana.vh118.hosterby.com/start_up/api/startap/startap/?format=json');
+        this.serverReq();
     }
 
     onChange = page => {
         this.setState({
             current: page,
         });
+        this.serverReq();
     };
 
     // getItems() {
-    //     let indexFrom = (this.state.current - 1)*this.state.pageSize;
-    //     let indexTo = this.state.pageSize*this.state.current-1;
+    //     let indexFrom = (this.state.page - 1)*this.state.pageSize;
+    //     let indexTo = this.state.pageSize*this.state.page-1;
     //     let currentPage = this.props.serverObj.results.slice(indexFrom, indexTo);
     //     return currentPage.map((data, i)=> {
     //         return <div key={i}>
@@ -50,7 +57,7 @@ class ServerData extends Component {
                 {this.props.serverObj.results && this.props.serverObj.results.length && (
                     <Fragment>
                         <Pagination
-                            current={this.state.current}
+                            current={this.state.page}
                             onChange={this.onChange}
                             total={this.props.serverObj.results.length}
                             defaultCurrent={1}
@@ -80,17 +87,15 @@ class ServerData extends Component {
 
 const mapStateToProps = state => {
     return {
-        serverObj: state.serverObj,
-        pagesize: state.pagesize
+        serverObj: state.serverObj
     }
 };
 
 
 const mapDispatchToProps = dispatch => {
-    let serverUrl = 'http://itstrana.vh118.hosterby.com/start_up/api/startap/startap/';
     return {
-        fetchServerData: (serverUrl, pagesize, page) => dispatch(fetchData(serverUrl, pageSize, page))
+        fetchServerData: (serverUrl, pageSize, page) => dispatch(fetchData(serverUrl, pageSize, page))
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ServerData, pagesize);
+export default connect(mapStateToProps, mapDispatchToProps)(ServerData);

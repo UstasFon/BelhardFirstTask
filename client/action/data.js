@@ -8,7 +8,7 @@ export function fetchDataSuccsess(serverObj) {
 }
 
 export function fetchData(serverUrl, pageSize, page) {
-    serverUrl +=  `?type=json&pagesize=${pageSize}&page=${page}`;
+    serverUrl +=  `?format=json&pagesize=${pageSize}&page=${page}`;
     return(dispath)=>{
         fetch(url)
             .then(responce => {
